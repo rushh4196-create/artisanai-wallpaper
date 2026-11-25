@@ -1,17 +1,31 @@
-# artisanai_wallpaper
+# ARTISANAI
 
-A new Flutter project.
+AI wallpapers, fresh every morning — 05:30 IST. One landscape, one portrait, one live wallpaper, every day. Cinematic teal-and-gold art, in the style of a daily art drop.
 
-## Getting Started
+## Download
 
-This project is a starting point for a Flutter application.
+Every push to `main` builds the app on GitHub Actions (free). Download the latest build from the **Actions** tab, under Artifacts:
 
-A few resources to get you started if this is your first Flutter project:
+- **Android** — artifact `artisanai-app-debug` — `app-debug.apk` (about 142 MB, debug build for testing on your phone)
+- **Windows 10 / 11** — artifact `artisanai-windows` — the Release folder, run `artisanai_wallpaper.exe` (Windows 10 or later; there is no Windows 9, Microsoft skipped it)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Latest run: https://github.com/rushh4196-create/artisanai-wallpaper/actions
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## About the app
+
+- Flutter, one codebase for Android + Windows
+- Dark theme: deep teal `#072A30` + gold `#D4AF37`
+- Today's Drop, Browse, Favourites (on-device, no accounts in the MVP)
+- Phase 0: placeholder art only. Real daily drops arrive with the Phase 2 pipeline.
+
+## Build it yourself
+
+```bash
+flutter pub get
+flutter analyze
+flutter test
+flutter build apk --debug        # Android
+flutter build windows --release  # Windows 10/11
+```
+
+Flutter 3.50.1, Dart 3.14.0, Java 17.
