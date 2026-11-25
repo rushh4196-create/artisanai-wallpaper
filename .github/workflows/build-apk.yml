@@ -1,10 +1,14 @@
 # ARTISANAI — free permanent cloud build (GitHub Actions)
 # Runs on GitHub's runners, NOT on the local VM, so the Gradle daemon
 # localhost problem on this VM never applies here.
-# Public repo = standard Linux runners are free.
+# Public repo = standard runners are free.
 # Triggers: every push to main, and manual Run workflow.
-# Output: app-debug.apk as a downloadable artifact (90 days).
-name: Build ARTISANAI APK
+# Outputs (downloadable artifacts, 90 days):
+#   - artisanai-app-debug (Android APK, app-debug.apk)
+#   - artisanai-windows (Windows 10/11 app, Release folder)
+# Note: there is no Windows 9 — Microsoft skipped it (8 -> 10).
+# Flutter Windows needs Windows 10 or later.
+name: Build ARTISANAI
 on:
   push:
     branches: [main]
@@ -41,4 +45,31 @@ jobs:
         with:
           name: artisanai-app-debug
           path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 90
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Flutter 3.50.1
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.50.1"
+          channel: stable
+          cache: true
+      - name: Check Flutter
+        run: flutter --version
+      - name: Get packages
+        run: flutter pub get
+      - name: Analyse
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: Build Windows app
+        run: flutter build windows --release
+      - name: Upload Windows app
+        uses: actions/upload-artifact@v4
+        with:
+          name: artisanai-windows
+          path: build/windows/x64/runner/Release
           retention-days: 90
