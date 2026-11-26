@@ -29,3 +29,9 @@ flutter build windows --release  # Windows 10/11
 ```
 
 Flutter 3.50.1, Dart 3.14.0, Java 17.
+
+## ARTISANAI Daily Pins (Pinterest)
+
+ARTISANAI Daily Pins is our personal Pinterest tool: once a day it publishes one Pin of original AI-generated ARTISANAI artwork to our own Pinterest board, using the Pinterest API. It is built for a single user (the account owner), authenticates only through Pinterest OAuth 2.0, and stores no Pinterest data.
+
+Privacy policy: https://rushh4196-create.github.io/artisanai-wallpaper/privacy-policy.html
